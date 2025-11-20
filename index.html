@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cookie Demo</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <script>
+    function setCookie() {
+      let username = prompt("Enter your name:");
+      document.cookie = "username=" + username + "; path=/";
+      location.reload();
+    }
+
+    function getCookie(name) {
+      let cookies = document.cookie.split("; ");
+      for (let i = 0; i < cookies.length; i++) {
+        let parts = cookies[i].split("=");
+        if (parts[0] === name) return parts[1];
+      }
+      return "";
+    }
+
+    window.onload = function() {
+      let user = getCookie("username");
+      if (user) {
+        document.getElementById("cookieDisplay").innerText = "Welcome back, " + user + "!";
+      } else {
+        setCookie();
+      }
+    };
+  </script>
+  <style>
+    footer {
+      margin-top: 20px;
+      font-size: 0.9em;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Cookie Demo Page</h1>
+  <p id="cookieDisplay"></p>
+  <footer>
+    &copy; 2025 Fayada Adam – A10 Assignment
+  </footer>
+</body>
+</html>
